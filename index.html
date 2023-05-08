@@ -11,12 +11,79 @@
     const cuadrado = () => {
       let num = document.getElementById("pantalla");
       num.value = num.value * num.value;
+      llenar_info();
     }
+
+    const mod = () => {
+      let num = document.getElementById("pantalla");
+      if (num.value < 0) {
+        num.value *= -1;
+      }
+      llenar_info();
+    }
+  
+    const fact = () => {
+      let num = document.getElementById("pantalla");
+      if (num.value < 1) 
+        num.value = 1;
+      for (let i = num.value - 1; i >=1; i--) 
+        { num.value *= i};
+      llenar_info();
+    }
+
+    //var operador = "";
+    var a = 0 //,b = 0;
+    const mul = () => {
+      a = document.getElementById("pantalla").value;
+      operador = "*";
+      vaciar();
+    }
+
+    const add = () => {
+      a = document.getElementById("pantalla").value;
+      operador = "+";
+      vaciar();
+    }
+
+    const eq = (b) => {
+      b = document.getElementById("pantalla").value;
+      let resultado = document.getElementById("pantalla");
+      operador == "*"? resultado.value =  a * b: resultado.value = parseInt(a,10) + parseInt(b);
+    }
+
+    const llenar_info = () => {
+      let inf = document.getElementById("info");
+      let num = document.getElementById("pantalla");
+      if (num.value > 200) {
+        inf.innerHTML = "El resultado es superior a 200";
+      } else if (num.value >= 100 ) {
+        inf.innerHTML = "El resultado está entre 100 y 200";
+      } else {
+        inf.innerHTML = "El resultado es menor que 100";
+      }
+    }
+    
   </script>
 </head>
 <body>
   Número:
   <input type="text" id="pantalla" onclick="vaciar()">
-  <button id="cuadrado" onclick="cuadrado()">x<sup>2</sup></button>
+  <div>
+    <h2 id="info" class="grande" title="Info sobre el número">Info sobre el número</h2>
+    <!--button id="actualiza" onclick="llenar_info()">ACK</button-->
+  </div>
+  <div>
+    <h3>Operaciones Unitarias</h3>
+    <button id="cuadrado" onclick="cuadrado()">x<sup>2</sup></button>
+    <button id="modulo" onclick="mod()">|X|</button>
+    <button id="factorial" onclick="fact()"><bold>n!</bold></button>
+  </div>
+  <div>
+    <h3>Operaciones Binarias</h3>
+    <button id="multiplicacion" onclick="mul()"><bold> * </bold></button>
+    <button id="suma" onclick="add()"><bold> + </bold></button>
+    <button id="igual" onclick="eq()"><bold> = </bold></button>
+  </div>
+
  </body>
 </html>
