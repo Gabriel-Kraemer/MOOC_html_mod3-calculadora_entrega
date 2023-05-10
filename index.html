@@ -4,43 +4,58 @@
   <title>Calculadora</title>
   <meta charset="utf-8">
   <script type="text/javascript">
+    var arr = [];
+    var numero = 0;
+    var operador = "+";
     const vaciar = () => {
       document.getElementById("pantalla").value = "";
     }
 
+    const validar = () => {
+      let valor = document.getElementById("pantalla").value;
+      if (valor.includes(",")){
+        arr = valor.split(",");
+        return arr;
+      } else {
+        numero = +valor;
+        return numero;
+      }
+  }
+
     const cuadrado = () => {
-      let num = document.getElementById("pantalla");
-      num.value = num.value * num.value;
+      validar();
+      document.getElementById("pantalla").value = (numero * numero);
       llenar_info();
     }
 
     const mod = () => {
-      let num = document.getElementById("pantalla");
-      if (num.value < 0) {
-        num.value *= -1;
+      validar();
+      if (numero < 0) {
+        numero *= -1;
       }
+      document.getElementById("pantalla").value = numero;
       llenar_info();
     }
   
     const fact = () => {
-      let num = document.getElementById("pantalla");
-      if (num.value < 1) 
-        num.value = 1;
-      for (let i = num.value - 1; i >=1; i--) 
-        { num.value *= i};
+      validar();
+      if (numero < 1) 
+        nummero = 1;
+      for (let i = numero - 1; i >=1; i--) 
+        {numero *= i};
+        document.getElementById("pantalla").value = numero;  
       llenar_info();
     }
 
-    //var operador = "";
     var a = 0 //,b = 0;
     const mul = () => {
-      a = document.getElementById("pantalla").value;
+      validar();
       operador = "*";
       vaciar();
     }
 
     const add = () => {
-      a = document.getElementById("pantalla").value;
+      validar();
       operador = "+";
       vaciar();
     }
@@ -48,7 +63,29 @@
     const eq = (b) => {
       b = document.getElementById("pantalla").value;
       let resultado = document.getElementById("pantalla");
-      operador == "*"? resultado.value =  a * b: resultado.value = parseInt(a,10) + parseInt(b);
+      operador == "*"? resultado.value =  numero * b: resultado.value = numero + +b;
+    }
+
+    const sumatorio = () => {
+      validar();
+      let i = 0, acc = 0;
+      while (i < arr.length) acc += +arr[i++];
+      document.getElementById("pantalla").value = acc;
+    }
+
+    const ordenar = () => {
+        validar();
+        document.getElementById("pantalla").value = arr.sort((a, b) => a - b);
+    }
+
+    const revertir = () => {
+        validar();
+        document.getElementById("pantalla").value = arr.reverse();
+    }
+    const quitar = () => {
+        validar();
+        arr.pop();
+        document.getElementById("pantalla").value = arr;
     }
 
     const llenar_info = () => {
@@ -83,6 +120,13 @@
     <button id="multiplicacion" onclick="mul()"><bold> * </bold></button>
     <button id="suma" onclick="add()"><bold> + </bold></button>
     <button id="igual" onclick="eq()"><bold> = </bold></button>
+  </div>
+  <div>
+    <h3>Operaciones en formato CSV</h3>
+    <button id="sumatorio" onclick="sumatorio()"><bold>Σx</bold></button>
+    <button id="ordenar" onclick="ordenar()">ordenar</button>
+    <button id="revertir" onclick="revertir()">revertir</button>
+    <button id="quitar" onclick="quitar()">quitar</button>
   </div>
 
  </body>
