@@ -11,6 +11,29 @@
         document.getElementById("pantalla").value = "";
       }
 
+    const validar = () => {
+      let valor = document.getElementById("pantalla").value;
+      /* numero = valor.filter((i)=>{return typeof i ==='number'&& !isNaN(i)});
+
+          const listaNumeros = lista.filter((elemento) => {
+          return typeof elemento === 'number' && !isNaN(elemento);
+          });
+      
+      */
+      if (valor.includes(",")){
+        arr = valor.split(",");
+        valor = arr.filter( i => {return typeof i === 'number' && !isNaN(i)});
+        //  return document.getElementById("pantalla").value = "Error";
+        //});
+        return arr;      
+      } else {
+        numero = +valor;
+        //if (typeof numero != "number"){
+        //  return valor = "Error";
+        //}
+        return numero;
+      }
+  }
       const validar = () => {
         var valor = document.getElementById("pantalla").value;
         console.log(valor, typeof valor);
@@ -73,12 +96,11 @@
         llenar_info();
       }
 
-      var a = 0 //,b = 0;
-      const mul = () => {
-        validar();
-        operador = "*";
-        vaciar();
-      }
+    const mul = () => {
+      validar();
+      operador = "*";
+      vaciar();
+    }
 
       const add = () => {
         validar();
@@ -86,11 +108,12 @@
         vaciar();
       }
 
-      const eq = (b) => {
-        b = document.getElementById("pantalla").value;
-        let resultado = document.getElementById("pantalla");
-        operador == "*"? resultado.value =  numero * b: resultado.value = numero + +b;
-      }
+    const eq = (b) => {
+      b = document.getElementById("pantalla").value;
+      let resultado = document.getElementById("pantalla");
+      operador == "*"? resultado.value =  numero * b: resultado.value = numero + +b;
+      llenar_info();
+    }
 
       const sumatorio = () => {
         validar();
