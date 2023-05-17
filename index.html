@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Calculadora</title>
-  <meta charset="utf-8">
-  <script type="text/javascript">
-    var numero = 0;
-    //var valor = document.getElementById("pantalla").value;
-    
-    const vaciar = () => {
-      document.getElementById("pantalla").value = "";
-    }
+  <head>
+    <title>Calculadora</title>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+      var arr = [];
+      var numero ;
+      var operador = "+";
+      const vaciar = () => {
+        document.getElementById("pantalla").value = "";
+      }
 
     const validar = () => {
       let valor = document.getElementById("pantalla").value;
@@ -34,31 +34,47 @@
         return numero;
       }
   }
-
-    const cuadrado = () => {
-      validar();
-      document.getElementById("pantalla").value = (numero * numero);
-      llenar_info();
-    }
-
-    const mod = () => {
-      validar();
-      if (numero < 0) {
-        numero *= -1;
+      const validar = () => {
+        let valor = document.getElementById("pantalla").value;
+          if (valor.includes(",")){
+            arr = valor.split(",");
+            //arr.forEach(i => parseInt(i,10));
+            //arr.forEach(i => prompt(typeof i))
+            return arr;
+          } else {
+            numero = +valor;
+            if (isNaN(numero)) {
+              document.getElementById("pantalla").value = "Error";
+              return numero="Error";
+            }
+            return numero;
+          }
       }
-      document.getElementById("pantalla").value = numero;
-      llenar_info();
-    }
-  
-    const fact = () => {
-      validar();
-      if (numero < 1) 
-        nummero = 1;
-      for (let i = numero - 1; i >=1; i--) 
-        {numero *= i};
-        document.getElementById("pantalla").value = numero;  
-      llenar_info();
-    }
+
+      const cuadrado = () => {
+        validar();
+        document.getElementById("pantalla").value = (numero * numero);
+        llenar_info();
+      }
+
+      const mod = () => {
+        validar();
+        if (numero < 0) {
+          numero *= -1;
+        }
+        document.getElementById("pantalla").value = numero;
+        llenar_info();
+      }
+
+      const fact = () => {
+        validar();
+        if (numero < 1)
+          nummero = 1;
+        for (let i = numero - 1; i >=1; i--)
+          {numero *= i};
+          document.getElementById("pantalla").value = numero;
+        llenar_info();
+      }
 
     const mul = () => {
       validar();
@@ -66,11 +82,11 @@
       vaciar();
     }
 
-    const add = () => {
-      validar();
-      operador = "+";
-      vaciar();
-    }
+      const add = () => {
+        validar();
+        operador = "+";
+        vaciar();
+      }
 
     const eq = (b) => {
       b = document.getElementById("pantalla").value;
@@ -79,68 +95,68 @@
       llenar_info();
     }
 
-    const sumatorio = () => {
-      validar();
-      let i = 0, acc = 0;
-      while (i < arr.length) acc += +arr[i++];
-      document.getElementById("pantalla").value = acc;
-    }
-
-    const ordenar = () => {
+      const sumatorio = () => {
         validar();
-        document.getElementById("pantalla").value = arr.sort((a, b) => a - b);
-    }
-
-    const revertir = () => {
-        validar();
-        document.getElementById("pantalla").value = arr.reverse();
-    }
-    const quitar = () => {
-        validar();
-        arr.pop();
-        document.getElementById("pantalla").value = arr;
-    }
-
-    const llenar_info = () => {
-      let inf = document.getElementById("info");
-      let num = document.getElementById("pantalla");
-      if (num.value > 200) {
-        inf.innerHTML = "El resultado es superior a 200";
-      } else if (num.value >= 100 ) {
-        inf.innerHTML = "El resultado está entre 100 y 200";
-      } else {
-        inf.innerHTML = "El resultado es menor que 100";
+        let i = 0, acc = 0;
+        while (i < arr.length) acc += +arr[i++];
+        document.getElementById("pantalla").value = acc;
       }
-    }
-    
-  </script>
-</head>
-<body>
-  Número:
-  <input type="text" id="pantalla" onclick="vaciar()">
-  <div>
-    <h2 id="info" class="grande" title="Info sobre el número">Info sobre el número</h2>
-    <!--button id="actualiza" onclick="llenar_info()">ACK</button-->
-  </div>
-  <div>
-    <h3>Operaciones Unitarias</h3>
-    <button id="cuadrado" onclick="cuadrado()">x<sup>2</sup></button>
-    <button id="modulo" onclick="mod()">|X|</button>
-    <button id="factorial" onclick="fact()"><bold>n!</bold></button>
-  </div>
-  <div>
-    <h3>Operaciones Binarias</h3>
-    <button id="multiplicacion" onclick="mul()"><bold> * </bold></button>
-    <button id="suma" onclick="add()"><bold> + </bold></button>
-    <button id="igual" onclick="eq()"><bold> = </bold></button>
-  </div>
-  <div>
-    <h3>Operaciones en formato CSV</h3>
-    <button id="sumatorio" onclick="sumatorio()"><bold>Σx</bold></button>
-    <button id="ordenar" onclick="ordenar()">ordenar</button>
-    <button id="revertir" onclick="revertir()">revertir</button>
-    <button id="quitar" onclick="quitar()">quitar</button>
-  </div>
 
- </body>
+      const ordenar = () => {
+          validar();
+          document.getElementById("pantalla").value = arr.sort((a, b) => a - b);
+      }
+
+      const revertir = () => {
+          validar();
+          document.getElementById("pantalla").value = arr.reverse();
+      }
+      const quitar = () => {
+          validar();
+          arr.pop();
+          document.getElementById("pantalla").value = arr;
+      }
+
+      const llenar_info = () => {
+        let inf = document.getElementById("info");
+        let num = document.getElementById("pantalla");
+        if (num.value > 200) {
+          inf.innerHTML = "Info: El resultado es superior a 200";
+        } else if (num.value >= 100 ) {
+          inf.innerHTML = "Info: El resultado está entre 100 y 200";
+        } else {
+          inf.innerHTML = "Info: El resultado es menor que 100";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    Número:
+    <input type="text" id="pantalla" onclick="vaciar()" />
+    <div>
+      <h2 id="info" class="grande" title="Info sobre el número">
+        Info sobre el número
+      </h2>
+      <!--button id="actualiza" onclick="llenar_info()">ACK</button-->
+    </div>
+    <div>
+      <h3>Operaciones Unitarias</h3>
+      <button id="cuadrado" onclick="cuadrado()">x<sup>2</sup></button>
+      <button id="modulo" onclick="mod()">|X|</button>
+      <button id="factorial" onclick="fact()"><bold>n!</bold></button>
+    </div>
+    <div>
+      <h3>Operaciones Binarias</h3>
+      <button id="multiplicacion" onclick="mul()"><bold> * </bold></button>
+      <button id="suma" onclick="add()"><bold> + </bold></button>
+      <button id="igual" onclick="eq()"><bold> = </bold></button>
+    </div>
+    <div>
+      <h3>Operaciones en formato CSV</h3>
+      <button id="sumatorio" onclick="sumatorio()"><bold>Σx</bold></button>
+      <button id="ordenar" onclick="ordenar()">ordenar</button>
+      <button id="revertir" onclick="revertir()">revertir</button>
+      <button id="quitar" onclick="quitar()">quitar</button>
+    </div>
+  </body>
 </html>
