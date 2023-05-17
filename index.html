@@ -12,20 +12,40 @@
       }
 
       const validar = () => {
-        let valor = document.getElementById("pantalla").value;
-          if (valor.includes(",")){
-            arr = valor.split(",");
-            //arr.forEach(i => parseInt(i,10));
-            //arr.forEach(i => prompt(typeof i))
-            return arr;
-          } else {
-            numero = +valor;
-            if (isNaN(numero)) {
-              document.getElementById("pantalla").value = "Error";
-              return numero="Error";
-            }
-            return numero;
+        var valor = document.getElementById("pantalla").value;
+        console.log(valor, typeof valor);
+        var arr = valor.split(",");
+        console.log(arr);
+        //return arr;
+        arr = valor.every(i => !isNaN(i));
+        console.log(arr);
+        /*if (/^(\d+|\d+(,\d+)*)$/.test(valor)) {
+          console.log('Variable válida:', valor);
+        } else {
+          console.log('Error');
+        }*/
+/*
+        if (valor.includes(",")){
+          var arr = valor.split(",");
+          for (let i= 0;i<arr.length;i++){
+            arr[i] = parseInt(arr[i],10);
+            isNaN(arr[i])? arr = document.getElementById("pantalla").value = "Error":arr;
           }
+          //var arr = valor.every(i => !isNaN(i));
+          alert(typeof valor);
+          if (arr){
+            return arr;
+          }else{
+            valor = document.getElementById("pantalla").value = "Error";
+          }
+        } else {
+          numero = +valor;
+          if (isNaN(numero)) {
+            alert(typeof valor+valor);
+            valor = document.getElementById("pantalla").value = "Error";
+          } else {
+          return numero;
+        }} */ 
       }
 
       const cuadrado = () => {
