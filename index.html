@@ -36,14 +36,17 @@
           if (valor.includes(",")){
             arr = valor.split(",");
             return arr;
-          } else {
-            numero = +valor;
-            if (isNaN(numero)) {
-              document.getElementById("pantalla").value = "Error";
-              return numero="Error";
-            }
-            return numero;
+          }else{
+            valor = document.getElementById("pantalla").value = "Error";
           }
+        } else {
+          numero = +valor;
+          if (isNaN(numero)) {
+            alert(typeof valor+valor);
+            valor = document.getElementById("pantalla").value = "Error";
+          } else {
+          return numero;
+        }} */ 
       }
 
       const cuadrado = () => {
