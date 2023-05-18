@@ -4,14 +4,11 @@
     <title>Calculadora</title>
     <meta charset="utf-8" />
     <script type="text/javascript">
-      var arr = [];
-      var numero ;
-      var operador = "+";
       const vaciar = () => {
         document.getElementById("pantalla").value = "";
       }
 
-    const validar = () => {
+    /*const validar = () => {
       let valor = document.getElementById("pantalla").value;
       /* numero = valor.filter((i)=>{return typeof i ==='number'&& !isNaN(i)});
 
@@ -19,7 +16,7 @@
           return typeof elemento === 'number' && !isNaN(elemento);
           });
       
-      */
+      
       if (valor.includes(",")){
         arr = valor.split(",");
         valor = arr.filter( i => {return typeof i === 'number' && !isNaN(i)});
@@ -33,13 +30,11 @@
         //}
         return numero;
       }
-  }
+    }*/
       const validar = () => {
         let valor = document.getElementById("pantalla").value;
           if (valor.includes(",")){
             arr = valor.split(",");
-            //arr.forEach(i => parseInt(i,10));
-            //arr.forEach(i => prompt(typeof i))
             return arr;
           } else {
             numero = +valor;
@@ -137,7 +132,6 @@
       <h2 id="info" class="grande" title="Info sobre el número">
         Info sobre el número
       </h2>
-      <!--button id="actualiza" onclick="llenar_info()">ACK</button-->
     </div>
     <div>
       <h3>Operaciones Unitarias</h3>
