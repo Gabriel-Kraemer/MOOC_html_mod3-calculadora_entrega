@@ -8,51 +8,34 @@
         document.getElementById("pantalla").value = "";
       }
 
-    /*const validar = () => {
-      let valor = document.getElementById("pantalla").value;
-      /* numero = valor.filter((i)=>{return typeof i ==='number'&& !isNaN(i)});
-
-          const listaNumeros = lista.filter((elemento) => {
-          return typeof elemento === 'number' && !isNaN(elemento);
-          });
-      
-      
-      if (valor.includes(",")){
-        arr = valor.split(",");
-        valor = arr.filter( i => {return typeof i === 'number' && !isNaN(i)});
-        //  return document.getElementById("pantalla").value = "Error";
-        //});
-        return arr;      
-      } else {
-        numero = +valor;
-        //if (typeof numero != "number"){
-        //  return valor = "Error";
-        //}
-        return numero;
-      }
-    }*/
       const validar = () => {
         let valor = document.getElementById("pantalla").value;
-          if (valor.includes(",")){
-            arr = valor.split(",");
-            return arr;
-          }else{
-            valor = document.getElementById("pantalla").value = "Error";
-          }
-        } else {
-          numero = +valor;
-          if (isNaN(numero)) {
-            alert(typeof valor+valor);
-            valor = document.getElementById("pantalla").value = "Error";
-          } else {
-          return numero;
-        }} */ 
+        var numero = "Error";
+        var arr = ["Error"];
+        if (!isNaN(parseFloat(valor)) && isFinite(valor)){
+          numero = parseFloat(valor);
+        } else if (valor.includes(",")){
+          arr = valor.split(","); 
+          for (let i= 0; i < arr.length; i++){
+            let num = parseFloat(arr[i]);
+            if (isNaN(num)||!isFinite(num)){
+              document.getElementById("pantalla").value = "Error";
+              break;
+            };
+          };  
+        };
+        return numero, arr;
       }
 
-      const cuadrado = () => {
+      const cuadrado = (numero) => {
         validar();
-        document.getElementById("pantalla").value = (numero * numero);
-        llenar_info();
+        alert("Volví de Validar "+ numero);
+        if (isNaN(numero)){
+          document.getElementById("pantalla").value = "Error";
+        } else {
+          document.getElementById("pantalla").value = (numero * numero);
+          llenar_info();
+        }
       }
 
       const mod = () => {
@@ -130,7 +113,7 @@
   </head>
   <body>
     Número:
-    <input type="text" id="pantalla" onclick="vaciar()" />
+    <input type="text" id="pantalla" onclick="vaciar()"/>
     <div>
       <h2 id="info" class="grande" title="Info sobre el número">
         Info sobre el número
